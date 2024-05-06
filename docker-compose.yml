@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  sql-server:
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=3124166
+      - MYSQL_DATABASE=cloud_db
+      - MYSQL_PASSWORD=3124166
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d/
+    networks:
+      - my_network
+
+  website:
+    build: ./
+    command: sh -c "sleep 10s ; python3 ./main.py"
+    ports:
+      - "8090:8080"
+    depends_on:
+      - sql-server
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge

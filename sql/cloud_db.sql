@@ -1,0 +1,21 @@
+CREATE DATABASE IF NOT EXISTS cloud_db;
+USE cloud_db;
+
+
+CREATE TABLE STUDENT(
+	STUDENT_ID INT PRIMARY KEY,
+    STUDENT_NAME VARCHAR (20) NOT NULL,
+    AGE INT,
+    CGPA DECIMAL (4,2) CHECK(CGPA BETWEEN 1.00 AND 4.00)
+);
+
+
+INSERT INTO STUDENT (STUDENT_ID, STUDENT_NAME, AGE, CGPA)
+VALUES
+	(22011968, 'Sarah Elmasry', 21, 3.33),
+    (22011636, 'Aseel Shareef', 19, 3.40),
+    (22010007, 'Amina Nasser', 19, 3.60),
+    (22010284, 'Nehal Khaled', 20, 2.44),
+    (22011576, 'Ranim Moustafa', 21, 3.60)
+    ;  
+
